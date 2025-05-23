@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rohan Kharel</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav">
+            <a href="#home" id="nav-home">Home</a>
+            <a href="#about" id="nav-about">About</a>
+            <a href="#projects" id="nav-projects">Projects</a>
+        </div>
+    </nav>
+
+    <div class="home-container" id="home">
+        <img class="home-pfp" src="/assets/pfp.png">
+        <div class="home-text-container">
+            <h1 class="home-title">Rohan <br>Kharel</h1>
+            <p class="home-text">Founder and Lead <br>Dev of <a href="https://thesilicon.uk">thesilicon.uk</a></p>
+        </div>
+    </div>
+
+    <div class="about-container" id="about">
+            <h1 class="about-title">About me</h1>
+            <p class="about-text">test test test test test test test test</p>
+    </div>
+    <div class="projects-container" id="projects">
+        <h1 class="projects-title">Projects</h1>
+        <p class="projects-text">Coming soon (thesilicon.uk, avahiye-brayeti.com, roba.agency, rohanstuff.gumroad.com)</p>
+
+    </div>
+
+    <script>
+        // for fAnCy EfFecT on the navbar
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = [
+                { id: 'home', nav: 'nav-home' },
+                { id: 'about', nav: 'nav-about' },
+                { id: 'projects', nav: 'nav-projects' }
+            ];
+
+            function onScroll() {
+                let scrollPos = window.scrollY || window.pageYOffset;
+                let offset = 128; // adjust to your navbar height
+
+                let currentSection = sections[0].id;
+                for (let section of sections) {
+                    const el = document.getElementById(section.id);
+                    if (el && el.offsetTop - offset <= scrollPos) {
+                        currentSection = section.id;
+                    }
+                }
+
+                sections.forEach(section => {
+                    document.getElementById(section.nav).classList.remove('active');
+                });
+
+                // Only add .active if the nav exists
+                const activeSection = sections.find(section => section.id === currentSection);
+                if (activeSection && document.getElementById(activeSection.nav)) {
+                    document.getElementById(activeSection.nav).classList.add('active');
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // set initial state
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.nav');
+            const links = Array.from(nav.querySelectorAll('a'));
+            let indicator = document.createElement('div');
+            indicator.className = 'nav-indicator';
+            nav.appendChild(indicator);
+
+            function moveIndicator() {
+                const active = nav.querySelector('a.active');
+                if (active) {
+                    const navRect = nav.getBoundingClientRect();
+                    const activeRect = active.getBoundingClientRect();
+                    indicator.style.left = (activeRect.left - navRect.left) - 15 + 'px';
+                    indicator.style.top = (activeRect.top - navRect.top) + 'px';
+                    indicator.style.width = activeRect.width + 30 + 'px';
+                    indicator.style.height = activeRect.height + 'px';
+                }
+            }
+
+            // Call moveIndicator whenever the active link changes
+            window.addEventListener('scroll', moveIndicator);
+            window.addEventListener('resize', moveIndicator);
+            setTimeout(moveIndicator, 10); // Initial position after DOM ready
+
+            // Also call after your onScroll logic
+            const origOnScroll = window.onscroll;
+            window.onscroll = function() {
+                if (origOnScroll) origOnScroll();
+                moveIndicator();
+            };
+
+            // If you change active class via JS, call moveIndicator() after
+            // Or, after your existing onScroll() in your script, add moveIndicator();
+            document.addEventListener('scroll', moveIndicator);
+            moveIndicator();
+        });
+    </script>
+</body>
+
+</html>

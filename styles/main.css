@@ -1,0 +1,82 @@
+html, body{
+    background-color: #0F0F0F;
+    font-family: Poppins;
+
+    scroll-behavior: smooth !important;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+nav{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+
+    margin-top: 20px;
+}
+
+.nav {
+    border-radius: 309px;
+    backdrop-filter: blur(100px);
+    background: rgba(49, 49, 49, 0.56);
+    width: fit-content;
+
+    position: relative;
+}
+
+.nav .nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 309px;
+    background: rgba(255,255,255,0.08);
+    z-index: 100;
+    transition:
+        left 0.4s cubic-bezier(0.4,0,0.2,1),
+        width 0.4s cubic-bezier(0.4,0,0.2,1),
+        height 0.4s cubic-bezier(0.4,0,0.2,1);
+    pointer-events: none;
+    height: 100%;
+}
+
+.nav a {
+    color: rgba(255, 255, 255, 0.74);
+    font-family: Poppins;
+    font-size: 3em;
+    font-weight: 600;
+    line-height: 128px;
+    letter-spacing: 0px;
+    text-align: center;
+    margin: 40px;
+    box-sizing: border-box;
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    padding-left: 20px; 
+    padding-right: 20px;
+    transition: 
+        background 0.4s cubic-bezier(0.4,0,0.2,1),
+        color 0.4s cubic-bezier(0.4,0,0.2,1),
+        border-radius 0.4s cubic-bezier(0.4,0,0.2,1);
+
+    position: relative;
+    z-index: 100;
+}
+
+.nav a.active {
+    color: #fff;
+    /* Remove background here */
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: #FFFFFF;
+}
+
+p, a, span{
+    color: #C1C1C1;
+}
